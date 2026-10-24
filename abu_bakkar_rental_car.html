@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abu Bakkar Rental Car</title>
+<style>
+:root{--red:#e21b2d;--red2:#ff3347;--bg:#101113;--panel:#191a1e;--panel2:#222329;--text:#f5f5f6;--muted:#b8b8c0}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:inherit;text-decoration:none}
+header{position:sticky;top:0;z-index:10;background:rgba(16,17,19,.94);backdrop-filter:blur(12px);border-bottom:1px solid #303137}
+.nav{max-width:1200px;margin:auto;padding:16px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.brand{font-weight:900;letter-spacing:.5px;font-size:1.1rem}.brand span{color:var(--red)}
+.nav a.cta,.hero .btn{background:var(--red);padding:10px 17px;border-radius:8px;font-weight:800;transition:.25s}
+.nav a.cta:hover,.hero .btn:hover{background:var(--red2);transform:translateY(-2px)}
+.hero{min-height:370px;display:grid;place-items:center;text-align:center;padding:75px 20px;background:radial-gradient(ellipse at 50% 0%,#55131b 0%,#211216 35%,var(--bg) 75%);border-bottom:1px solid #292a30}
+.eyebrow{color:#ff6573;font-weight:800;text-transform:uppercase;letter-spacing:3px;font-size:.8rem}
+h1{font-size:clamp(2.5rem,7vw,5rem);line-height:1.05;margin:14px 0}
+h1 span{color:var(--red)}
+.hero p{max-width:650px;color:var(--muted);margin:0 auto 25px}
+.section{max-width:1200px;margin:auto;padding:54px 22px}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:24px}
+h2{font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.15}
+.section-head p{color:var(--muted);font-size:.95rem}
+.car-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.car-card{background:var(--panel);border:1px solid #303137;border-radius:15px;overflow:hidden;transition:transform .28s,border-color .28s,box-shadow .28s}
+.car-card:hover{transform:translateY(-7px);border-color:var(--red);box-shadow:0 14px 35px #0007}
+.car-image{height:205px;background:#292a2f;overflow:hidden;position:relative}
+.car-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .45s}
+.car-card:hover .car-image img{transform:scale(1.06)}
+.car-image:after{content:"";position:absolute;inset:55% 0 0;background:linear-gradient(transparent,#0007);pointer-events:none}
+.car-content{padding:19px}
+.car-content h3{font-size:1.25rem;margin-bottom:7px}
+.car-content .desc{color:var(--muted);font-size:.92rem;min-height:47px}
+.features{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0 18px}
+.features span{font-size:.75rem;color:#eee;background:#2b2c32;border:1px solid #3a3b42;padding:5px 8px;border-radius:5px}
+.add-btn{border:0;width:100%;padding:12px;background:var(--red);color:white;font-size:.95rem;font-weight:800;border-radius:8px;cursor:pointer;transition:.2s}
+.add-btn:hover{background:var(--red2);box-shadow:0 5px 18px #e21b2d55}
+.cart-section{padding-top:5px}
+.cart-box{background:var(--panel);border:1px solid #393a41;border-radius:15px;padding:22px}
+.cart-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:15px}
+.cart-count{background:var(--red);border-radius:30px;padding:5px 11px;font-size:.85rem;font-weight:800}
+.cart-empty{color:var(--muted);padding:24px 5px;text-align:center;border:1px dashed #414149;border-radius:10px}
+.cart-item{display:grid;grid-template-columns:86px 1fr auto;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid #303137}
+.cart-item:last-child{border-bottom:0}
+.cart-item img{width:86px;height:58px;object-fit:cover;border-radius:7px}
+.cart-item h4{font-size:.98rem}.cart-item small{color:var(--muted)}
+.qty{display:flex;align-items:center;gap:9px}
+.qty button{background:#303137;border:1px solid #4a4b52;color:white;width:28px;height:28px;border-radius:6px;cursor:pointer}
+.qty button:hover{background:var(--red)}
+.remove{background:none;border:0;color:#ff7b86;cursor:pointer;font-size:.8rem;margin-top:4px}
+.social{background:#17181c;border-top:1px solid #303137;border-bottom:1px solid #303137;text-align:center;padding:42px 20px}
+.social h2{margin-bottom:9px}.social p{color:var(--muted);margin-bottom:20px}
+.social-links{display:flex;justify-content:center;flex-wrap:wrap;gap:12px}
+.social-links a{border:1px solid #484950;padding:10px 16px;border-radius:8px;transition:.2s}
+.social-links a:hover{border-color:var(--red);background:#30151a}
+footer{text-align:center;padding:32px 20px;color:var(--muted);font-size:.9rem}
+footer strong{display:block;color:white;font-size:1.6rem;margin-bottom:7px}footer strong span{color:var(--red)}
+.toast{position:fixed;bottom:22px;right:22px;background:#24252b;border:1px solid var(--red);padding:12px 18px;border-radius:9px;box-shadow:0 8px 28px #0008;opacity:0;transform:translateY(12px);transition:.25s;pointer-events:none;z-index:20}
+.toast.show{opacity:1;transform:translateY(0)}
+@media(max-width:900px){.car-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.nav{padding:13px 15px}.brand{font-size:.95rem}.nav a.cta{padding:8px 11px;font-size:.85rem}.section{padding:40px 15px}.car-grid{grid-template-columns:1fr}.car-image{height:220px}.section-head{align-items:start;flex-direction:column}.cart-box{padding:14px}.cart-item{grid-template-columns:68px 1fr auto;gap:9px}.cart-item img{width:68px;height:52px}.qty{gap:5px}.qty button{width:25px;height:25px}}
+</style>
+</head>
+<body>
+<header>
+  <nav class="nav">
+    <a class="brand" href="#home">ABU BAKKAR <span>RENTAL CAR</span></a>
+    <a class="cta" href="#cars">Explore Cars ↓</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div>
+    <div class="eyebrow">Comfort • Style • Reliability</div>
+    <h1>ABU BAKKAR<br><span>RENTAL CAR</span></h1>
+    <p>Find the right ride for your next journey. Explore our collection of comfortable, stylish and reliable cars.</p>
+    <a class="btn" href="#cars">View Our Cars</a>
+  </div>
+</section>
+
+<section class="section" id="cars">
+  <div class="section-head">
+    <div><div class="eyebrow">Our Collection</div><h2>Choose Your Ride</h2></div>
+    <p>Pick a car to add it to your selection.</p>
+  </div>
+  <div class="car-grid" id="carGrid"></div>
+</section>
+
+<section class="section cart-section" id="cart">
+  <div class="cart-box">
+    <div class="cart-top"><div><div class="eyebrow">Your Selection</div><h2>Selected Cars</h2></div><span class="cart-count" id="cartCount">0 items</span></div>
+    <div id="cartItems"><div class="cart-empty">Your cart is empty. Add a car from the collection above.</div></div>
+  </div>
+</section>
+
+<section class="social">
+  <div class="eyebrow">Stay Connected</div>
+  <h2>Follow Abu Bakkar</h2>
+  <p>Follow us on social media for updates and more.</p>
+  <div class="social-links">
+    <a href="https://www.instagram.com/abu.bakkar.official/" target="_blank" rel="noopener noreferrer">Instagram · @abu.bakkar.official ↗</a>
+    <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">Facebook · abu.bakkar.official ↗</a>
+  </div>
+</section>
+</main>
+
+<footer><strong>THANK YOU FOR <span>VISITING!</span></strong>Abu Bakkar Rental Car · Your journey, our priority.</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const cars = [
+  {id:"fortuner",name:"Toyota Fortuner",desc:"A bold, spacious SUV for family trips and a premium ride experience.",features:["SUV","Spacious","Premium"],image:"https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=1000&q=85"},
+  {id:"civic",name:"Honda Civic",desc:"A sleek sedan with a sporty look and a comfortable cabin.",features:["Sedan","Sporty look","Comfort"],image:"https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1000&q=85"},
+  {id:"rebirth",name:"Honda Civic Rebirth",desc:"A classic favourite with a smart design and everyday comfort.",features:["Sedan","Classic style","Everyday drive"],image:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1000&q=85"},
+  {id:"audi",name:"Audi",desc:"Modern styling and a refined feel for a premium travel experience.",features:["Luxury","Modern design","Premium"],image:"https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1000&q=85"},
+  {id:"city",name:"Honda City",desc:"A practical, comfortable sedan for city travel and daily plans.",features:["Sedan","City friendly","Comfort"],image:"https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1000&q=85"},
+  {id:"alto",name:"Suzuki Alto",desc:"A compact and convenient choice for quick trips around town.",features:["Compact","City drive","Practical"],image:"https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=1000&q=85"}
+];
+const cart = {};
+const grid = document.getElementById("carGrid");
+const cartItems = document.getElementById("cartItems");
+const cartCount = document.getElementById("cartCount");
+const toast = document.getElementById("toast");
+let toastTimer;
+
+function showToast(message){
+  toast.textContent = message;
+  toast.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>toast.classList.remove("show"),2200);
+}
+function renderCars(){
+  grid.innerHTML = cars.map(car => `
+    <article class="car-card">
+      <div class="car-image">
+        <img src="${car.image}" alt="${car.name}" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/900x500/222329/ffffff?text=Car+Photo';">
+      </div>
+      <div class="car-content">
+        <h3>${car.name}</h3>
+        <p class="desc">${car.desc}</p>
+        <div class="features">${car.features.map(feature=>`<span>${feature}</span>`).join("")}</div>
+        <button class="add-btn" onclick="addToCart('${car.id}')">＋ Add to Cart</button>
+      </div>
+    </article>`).join("");
+}
+function addToCart(id){
+  cart[id] = (cart[id] || 0) + 1;
+  renderCart();
+  showToast(cars.find(car=>car.id===id).name + " added to your selection");
+}
+function changeQty(id,amount){
+  cart[id] = (cart[id] || 0) + amount;
+  if(cart[id] <= 0) delete cart[id];
+  renderCart();
+}
+function removeCar(id){
+  delete cart[id];
+  renderCart();
+  showToast("Car removed from your selection");
+}
+function renderCart(){
+  const selected = cars.filter(car=>cart[car.id]);
+  const total = selected.reduce((sum,car)=>sum+cart[car.id],0);
+  cartCount.textContent = `${total} ${total===1?"item":"items"}`;
+  if(!selected.length){
+    cartItems.innerHTML = '<div class="cart-empty">Your cart is empty. Add a car from the collection above.</div>';
+    return;
+  }
+  cartItems.innerHTML = selected.map(car=>`
+    <div class="cart-item">
+      <img src="${car.image}" alt="${car.name}" onerror="this.onerror=null;this.src='https://placehold.co/180x100/222329/ffffff?text=Car';">
+      <div><h4>${car.name}</h4><small>Quantity: ${cart[car.id]}x</small><br><button class="remove" onclick="removeCar('${car.id}')">Remove</button></div>
+      <div class="qty">
+        <button aria-label="Remove one ${car.name}" onclick="changeQty('${car.id}',-1)">−</button>
+        <strong>${cart[car.id]}x</strong>
+        <button aria-label="Add one ${car.name}" onclick="changeQty('${car.id}',1)">+</button>
+      </div>
+    </div>`).join("");
+}
+renderCars();
+renderCart();
+</script>
+</body>
+</html>
